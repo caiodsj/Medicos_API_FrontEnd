@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DoctorServiceService } from 'src/app/services/doctor-service.service';
 
@@ -21,7 +21,7 @@ export class FormAddEditDoctorComponent implements OnInit{
         crm: '', 
         name: '',
         cpf: '',
-        phone: '',
+        phone: ['', [Validators.pattern('^[0-9]*$')]],
         email: '',
         specialty: '',
         acceptsample: data ? data.acceptSample : false
@@ -74,4 +74,22 @@ export class FormAddEditDoctorComponent implements OnInit{
         error: console.error
       })
     }
+    formatarTelefone(event: any): void {
+      const input = event.target;
+      const value = input.value.replace(/\D/g, '');
+      const formattedValue = this.formatarNumeroTelefone(value);
+    
+      input.value = formattedValue;
+    
+      this.form.patchValue({ phone: value });
+    }
+    
+    formatarNumeroTelefone(value: string): string {
+      if (value.length <= 10) {
+        return value.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+      } else {
+        return value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+      }
+    }
+    
 }

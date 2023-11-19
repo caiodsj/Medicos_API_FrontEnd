@@ -13,9 +13,9 @@
       </mat-form-field>
   
       <mat-form-field>
-        <input matInput placeholder=" " formControlName="phone" >
+        <input matInput placeholder=" " formControlName="phone" (input)="formatarTelefone($event)">
         <mat-label>Telefone</mat-label>
-      </mat-form-field>
+      </mat-form-field>               
   
       <mat-form-field>
         <input matInput placeholder=" " formControlName="email" >

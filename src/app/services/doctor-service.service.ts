@@ -23,10 +23,10 @@ export class DoctorServiceService {
   updateDoctor(id:number,data:any):Observable<any>{
     return this._http.put(this._url+id, data)
   }
-  updateAdress(id:number, data:any):Observable<any>{
-    return this._http.put('https://localhost:7038/api/Adresses/'+id, data)
+  updateAddress(id:number, data:any):Observable<any>{
+    return this._http.put('https://localhost:7038/api/Addresses/'+id, data)
   }
-  getAdressByDoctorId(id:number):Observable<any>{
-    return this._http.get('https://localhost:7038/api/Adresses/'+id)
+  getAddressByDoctorId(id:number):Observable<any>{
+    return this._http.get('https://localhost:7038/api/Addresses/'+id)
   }
 }

@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { CepCorreiosService } from 'src/app/services/cep-correios.service';
 import { DoctorServiceService } from 'src/app/services/doctor-service.service';
 
 @Component({
@@ -17,16 +18,17 @@ export class EnderecoComponent implements OnInit{
     private _fb: FormBuilder,
     private _dialogRef: MatDialogRef<EnderecoComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private _service: DoctorServiceService
+    private _service: DoctorServiceService,
+    private _cepService: CepCorreiosService
   ) {
-    this.form = _fb.group({
-      state: { value: '', disabled: true },
-      city: { value: '', disabled: true },
-      street: { value: '', disabled: true },
-      zipCode: { value: '', disabled: true },
-      neighborhood: { value: '', disabled: true },
-      number: { value: '', disabled: true },
-      complement: { value: '', disabled: true }
+    this.form = this._fb.group({
+      state: [''],
+      city: [''],
+      street: [''],
+      zipCode: [''],
+      neighborhood: [''],
+      number: [''],
+      complement: ['']
     });
   }
 
@@ -51,7 +53,7 @@ export class EnderecoComponent implements OnInit{
     if (this.doctorAddress && this.doctorAddress.id) {
       const idAdress = this.doctorAddress.id;
       
-      this._service.updateAdress(idAdress, this.form.value).subscribe({
+      this._service.updateAddress(idAdress, this.form.value).subscribe({
         next: (res) => {
           console.log('Endereço atualizado');
           this.getDoctorList();
@@ -79,7 +81,7 @@ export class EnderecoComponent implements OnInit{
     })
   }
   getAddressByDoctorId(){
-    this._service.getAdressByDoctorId(this.data.id).subscribe({
+    this._service.getAddressByDoctorId(this.data.id).subscribe({
       next:(res)=>{
         this.doctorAddress = res
         this.form.patchValue(this.doctorAddress);
@@ -87,4 +89,24 @@ export class EnderecoComponent implements OnInit{
       error: console.error
     })
   }
+
+  getAllAddressByCEP(cep: string) {
+    this._cepService.completeAddress(cep).subscribe(
+      (data) => {
+        this.form.patchValue({
+          state: (data as any).uf,
+          city: (data as any).cidade,
+          street: (data as any).endereco,
+          zipCode: (data as any).cep,
+          neighborhood: (data as any).bairro,
+          complement: (data as any).complemento
+          // Preencha outros campos conforme necessário
+        });
+      },
+      (error) => {
+        console.error('Erro ao consultar CEP', error);
+      }
+    );
+  }
+  
 }

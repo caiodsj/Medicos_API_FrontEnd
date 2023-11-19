@@ -18,9 +18,9 @@
         </mat-form-field>
 
         <mat-form-field>
-            <input matInput placeholder=" " formControlName="zipCode">
+            <input matInput placeholder=" " formControlName="zipCode" (blur)="getAllAddressByCEP(form.get('zipCode')?.value)">
             <mat-label>CEP</mat-label>
-        </mat-form-field>
+          </mat-form-field>
 
         <mat-form-field>
             <input matInput placeholder=" " formControlName="neighborhood">
