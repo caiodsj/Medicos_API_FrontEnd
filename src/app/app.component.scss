@@ -1,0 +1,87 @@
+.body {
+  margin: 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.line {
+  width: 100%;
+  height: 1px;
+  background-color: #ccc;
+  margin: 10px 0;
+}
+
+.filter-section {
+  margin-bottom: 20px;
+}
+
+.filter-section input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.table {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center; /* Centraliza o texto nas células da tabela */
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.btn-actions button {
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.btn-cadastrar {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-cadastrar:hover {
+  background-color: #45a049;
+}
+
+mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-endereco {
+  background-color: #45a049;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.edit {
+  color: #45a049;
+}
+
+.delete {
+  color: rgb(204, 67, 67);
+}

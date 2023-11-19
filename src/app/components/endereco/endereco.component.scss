@@ -1,0 +1,23 @@
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  h2 {
+    margin-bottom: 20px; 
+  }
+  
+  mat-form-field {
+    width: 90%;
+    margin-bottom: 5px; 
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: space-between; 
+    margin: 10px; 
+    gap: 10px;
+  }
+  

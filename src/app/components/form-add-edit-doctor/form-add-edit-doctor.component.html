@@ -1,0 +1,49 @@
+<div class="body">
+    <form [formGroup]="form" (ngSubmit)="onFormSubmit()">
+      <h2>{{ data ? 'Editar Médico' : 'Adicionar Médico' }}</h2>
+  
+      <mat-form-field>
+        <input matInput placeholder=" " formControlName="name" required>
+        <mat-label>Nome</mat-label>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <input matInput placeholder=" " formControlName="cpf" [disabled]="data?.cpf !== undefined">
+        <mat-label>CPF</mat-label>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <input matInput placeholder=" " formControlName="phone" >
+        <mat-label>Telefone</mat-label>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <input matInput placeholder=" " formControlName="email" >
+        <mat-label>E-mail</mat-label>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <input matInput placeholder=" " formControlName="specialty" required>
+        <mat-label>Especialidade</mat-label>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <input matInput placeholder=" " formControlName="crm" [disabled]="data?.crm !== undefined" required>
+        <mat-label>CRM</mat-label>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Aceita Amostra</mat-label>
+        <mat-select formControlName="acceptsample">
+          <mat-option [value]="true">Sim</mat-option>
+          <mat-option [value]="false">Não</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <div class="buttons">
+        <button mat-raised-button color="primary" type="submit">{{ data ? 'Atualizar' : 'Cadastrar' }}</button>
+        <button mat-raised-button (click)="closeDialog()" type="button">Cancelar</button>
+      </div>
+    </form>
+  </div>
+  

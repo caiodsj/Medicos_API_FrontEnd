@@ -1,0 +1,47 @@
+<div class="body">
+    <form [formGroup]="form">
+        <h2>Dados do Endereço</h2>
+
+        <mat-form-field>
+            <input matInput placeholder=" " formControlName="state">
+            <mat-label>Estado</mat-label>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder=" " formControlName="city">
+            <mat-label>Cidade</mat-label>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder=" " formControlName="street">
+            <mat-label>Rua</mat-label>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder=" " formControlName="zipCode">
+            <mat-label>CEP</mat-label>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder=" " formControlName="neighborhood">
+            <mat-label>Bairro</mat-label>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder=" " formControlName="number">
+            <mat-label>Número</mat-label>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder=" " formControlName="complement">
+            <mat-label>Complemento</mat-label>
+        </mat-form-field>
+
+        <div class="buttons">
+            <button mat-raised-button color="primary" (click)="toggleEditMode()">
+                {{ isEditMode ? 'Salvar' : 'Editar' }}
+            </button>
+            <button mat-raised-button (click)="closeDialog()">Fechar</button>
+        </div>
+    </form>
+</div>

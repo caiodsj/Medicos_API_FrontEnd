@@ -1,0 +1,89 @@
+<mat-toolbar color="primary">
+  <span>LISTA DE MÉDICOS</span>
+  <span class="example-spacer"></span>
+  <button mat-raised-button (click)="openAddDoctor()">
+    ADD DOCTOR
+  </button>
+</mat-toolbar>
+
+<div class="body">
+  <div class="header">
+    <h1>MÉDICOS</h1>
+    <div class="line"></div>
+  </div>
+
+  <div class="filter-section">
+    <input matInput (input)="applyFilter($event)" placeholder="Ex. João Silva" [(ngModel)]="filter">
+  </div>
+
+  <div class="table">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <!-- Nome Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> NOME </th>
+        <td mat-cell *matCellDef="let row"> {{ row.name }} </td>
+      </ng-container>
+
+      <!-- CPF Column -->
+      <ng-container matColumnDef="cpf">
+        <th mat-header-cell *matHeaderCellDef> CPF </th>
+        <td mat-cell *matCellDef="let row"> {{ row.cpf }} </td>
+      </ng-container>
+
+      <!-- Telefone Column -->
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef> TELEFONE </th>
+        <td mat-cell *matCellDef="let row"> {{ row.phone }} </td>
+      </ng-container>
+
+      <!-- Email Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> EMAIL </th>
+        <td mat-cell *matCellDef="let row"> {{ row.email }} </td>
+      </ng-container>
+
+      <!-- Especialidade Column -->
+      <ng-container matColumnDef="specialty">
+        <th mat-header-cell *matHeaderCellDef> ESPECIALIDADE </th>
+        <td mat-cell *matCellDef="let row"> {{ row.specialty }} </td>
+      </ng-container>
+
+      <!-- CRM Column -->
+      <ng-container matColumnDef="crm">
+        <th mat-header-cell *matHeaderCellDef> CRM </th>
+        <td mat-cell *matCellDef="let row"> {{ row.crm }} </td>
+      </ng-container>
+
+      <!-- Ver Endereço Column -->
+      <ng-container matColumnDef="verEndereco">
+        <th mat-header-cell *matHeaderCellDef> ENDEREÇO </th>
+        <td mat-cell *matCellDef="let row"> <button class="btn-endereco" (click)="verEndereco(row)">Ver endereço</button> </td>
+      </ng-container>
+
+      <!-- Aceita Amostra Column -->
+      <ng-container matColumnDef="acceptSample">
+        <th mat-header-cell *matHeaderCellDef> ACEITA AMOSTRA </th>
+        <td mat-cell *matCellDef="let row"> {{ row.acceptSample ? 'Sim' : 'Não' }} </td>
+      </ng-container>
+
+      <!-- Ações Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> AÇÕES </th>
+        <td mat-cell *matCellDef="let row" class="btn-actions">
+          <button (click)="openEditForm(row);"><mat-icon class="edit">edit</mat-icon>
+          </button>
+          <button (click)="deleteDoctor(row.id);"><mat-icon class="delete">delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Adicione a coluna 'action' na lista de colunas exibidas -->
+      <tr mat-header-row *matHeaderRowDef="['name', 'cpf', 'phone', 'email', 'specialty', 'crm', 'verEndereco', 'acceptSample', 'action']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['name', 'cpf', 'phone', 'email', 'specialty', 'crm', 'verEndereco', 'acceptSample', 'action'];"></tr>
+
+    </table>
+
+    <mat-paginator [pageSize]="100" [pageSizeOptions]="[100, 200, 300]" [showFirstLastButtons]="true"></mat-paginator>
+  </div>
+</div>
