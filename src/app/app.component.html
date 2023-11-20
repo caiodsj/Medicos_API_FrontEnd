@@ -33,10 +33,20 @@
 
       <!-- Telefone Column -->
       <ng-container matColumnDef="phone">
-        <th mat-header-cell *matHeaderCellDef> TELEFONE </th>
-        <td mat-cell *matCellDef="let row"> {{ row.phone }} </td>
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" style="width: 150px;">
+            <mat-label>Filtrar por Telefone</mat-label>
+            <mat-select [(ngModel)]="phoneFilter" (ngModelChange)="applyPhoneFilter()">
+              <mat-option value="all">Todos</mat-option>
+              <mat-option value="withPhone">Com Telefone</mat-option>
+              <mat-option value="withoutPhone">Sem Telefone</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.phone }}
+        </td>
       </ng-container>
-
       <!-- Email Column -->
       <ng-container matColumnDef="email">
         <th mat-header-cell *matHeaderCellDef> EMAIL </th>

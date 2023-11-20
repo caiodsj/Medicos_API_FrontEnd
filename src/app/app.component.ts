@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
   ]
   data: any = []
   filter: string = '';
+  phoneFilter: string = 'all';
   
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   dataSource = new MatTableDataSource<any>([]);
@@ -59,6 +60,7 @@ export class AppComponent implements OnInit {
         this.dataSource.data = this.data;
         if (this.dataSource.paginator) {
           this.dataSource.paginator.firstPage();
+          this.applyPhoneFilter();
         }
       },
       error: (err) => {
@@ -115,5 +117,18 @@ export class AppComponent implements OnInit {
         }
       }
     })
+  }
+  applyPhoneFilter() {
+    if (this.phoneFilter === 'all') {
+      this.dataSource.data = this.data;
+    } else if (this.phoneFilter === 'withPhone') {
+      this.dataSource.data = this.data.filter((item:any) => item.phone !== null && item.phone !== undefined);
+    } else if (this.phoneFilter === 'withoutPhone') {
+      this.dataSource.data = this.data.filter((item:any) => item.phone === null || item.phone === '');
+    }
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 }
