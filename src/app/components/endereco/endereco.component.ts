@@ -95,12 +95,11 @@ export class EnderecoComponent implements OnInit{
       (data) => {
         this.form.patchValue({
           state: (data as any).uf,
-          city: (data as any).cidade,
-          street: (data as any).endereco,
+          city: (data as any).localidade,
+          street: (data as any).logradouro,
           zipCode: (data as any).cep,
           neighborhood: (data as any).bairro,
           complement: (data as any).complemento
-          // Preencha outros campos conforme necessário
         });
       },
       (error) => {
