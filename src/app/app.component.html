@@ -35,7 +35,7 @@
       <ng-container matColumnDef="phone">
         <th mat-header-cell *matHeaderCellDef>
           <mat-form-field appearance="outline" style="width: 150px;">
-            <mat-label>Filtrar por Telefone</mat-label>
+            <mat-label>Telefone</mat-label>
             <mat-select [(ngModel)]="phoneFilter" (ngModelChange)="applyPhoneFilter()">
               <mat-option value="all">Todos</mat-option>
               <mat-option value="withPhone">Com Telefone</mat-option>
@@ -88,7 +88,6 @@
         </td>
       </ng-container>
 
-      <!-- Adicione a coluna 'action' na lista de colunas exibidas -->
       <tr mat-header-row *matHeaderRowDef="['name', 'cpf', 'phone', 'email', 'specialty', 'crm', 'verEndereco', 'acceptSample', 'action']"></tr>
       <tr mat-row *matRowDef="let row; columns: ['name', 'cpf', 'phone', 'email', 'specialty', 'crm', 'verEndereco', 'acceptSample', 'action'];"></tr>
 
